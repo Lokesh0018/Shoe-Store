@@ -1,0 +1,266 @@
+/* Volt Runners, official minimal: near-white paper, black type, one family, hairlines, soft corners.
+   Colour only comes from the products (and the Colour Lab stage, which takes the colourway's tint). */
+
+:root {
+  --nav-h: 96px; /* announcement 32 + bar 64 */
+  --r: 16px; /* cards, images */
+  --r-sm: 10px; /* size buttons, small boxes */
+  --swap: 0.5s; /* Colour Lab: shoe, name, labels and stage tint all change on this one clock */
+  --swap-ease: cubic-bezier(0.33, 1, 0.68, 1);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  interpolate-size: allow-keywords;
+}
+@media (max-width: 767px) {
+  :root {
+    --nav-h: 84px; /* announcement 28 + bar 56 */
+    --r: 12px;
+  }
+}
+
+/* no film grain: a clean, printed-paper surface */
+.grain::after {
+  display: none;
+}
+
+.font-display {
+  font-weight: 600;
+  line-height: 0.96;
+  letter-spacing: -0.04em;
+}
+.split-word {
+  padding-inline: 0.04em;
+  margin-inline: -0.04em;
+}
+.tnum {
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--muted);
+}
+.label {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--muted);
+}
+
+/* Buttons: pills, sentence case, no shimmer */
+.btn {
+  gap: 0.6rem;
+  border-radius: 999px;
+  padding: 0.95rem 1.6rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  text-transform: none;
+  transition: background-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+}
+.btn-solid {
+  background: var(--accent);
+  color: var(--accent-text);
+}
+.btn-solid::after {
+  display: none;
+}
+.btn-solid:hover {
+  background: #2e2e2e;
+}
+.btn-outline {
+  border: 0;
+  color: var(--text);
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+.btn-outline::before {
+  display: none;
+}
+.btn-outline:hover {
+  color: var(--text);
+  box-shadow: inset 0 0 0 1px var(--text);
+}
+.btn svg {
+  transition: transform 0.25s ease;
+}
+.btn:hover svg {
+  transform: translateX(3px);
+}
+.btn:focus-visible,
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 3px;
+}
+
+/* On dark (hero photo, limited band): white buttons */
+.on-dark .btn-solid {
+  background: #fff;
+  color: #111;
+}
+.on-dark .btn-solid:hover {
+  background: #e8e8e4;
+}
+.on-dark .btn-outline {
+  color: #fff;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.45);
+}
+.on-dark .btn-outline:hover {
+  color: #fff;
+  box-shadow: inset 0 0 0 1px #fff;
+}
+.on-dark :focus-visible {
+  outline-color: #fff;
+}
+
+/* Small plain tags (product badges) */
+.tag {
+  display: inline-block;
+  border-radius: 999px;
+  padding: 0.3rem 0.65rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* No sideways scrolling on phones, without breaking position: sticky in iOS Safari:
+   `hidden` on body (engine default) makes Safari treat body as a scroll box, so the pinned
+   Colour Lab and tech cards stopped sticking. `clip` cuts the overflow without that side effect. */
+body {
+  overflow-x: clip;
+}
+
+/* ---------- nav ---------- */
+.bag-bump {
+  animation: bag-bump 0.6s var(--ease-out);
+}
+@keyframes bag-bump {
+  30% { transform: scale(1.35); }
+}
+.notice-in {
+  animation: notice-in 0.6s var(--ease-out) both;
+}
+@keyframes notice-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+.live-dot {
+  animation: live 1.6s ease-in-out infinite;
+}
+@keyframes live {
+  50% { opacity: 0.3; }
+}
+
+/* ---------- hero: one photo, a slow zoom ---------- */
+.hero-zoom {
+  transform-origin: 70% 60%;
+  animation: hero-zoom 20s ease-in-out infinite alternate;
+  will-change: transform;
+}
+@keyframes hero-zoom {
+  from { transform: scale(1.02); }
+  to { transform: scale(1.08); }
+}
+
+/* ---------- colour lab ---------- */
+.lab-shoe,
+.cw-swap {
+  transition-property: transform, opacity, color, background-color, box-shadow, width, visibility;
+  transition-duration: var(--swap);
+  transition-timing-function: var(--swap-ease);
+}
+/* the outgoing shoe / word clears in half the time, so two colourways never smear together,
+   then is hidden (not painted at all) */
+.cw-out {
+  visibility: hidden;
+  transition-duration: calc(var(--swap) * 0.45);
+}
+.cw-in {
+  display: inline-block;
+  animation: cw-in var(--swap) var(--swap-ease) both;
+}
+@keyframes cw-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+.lab-float {
+  animation: lab-float 4s ease-in-out infinite alternate;
+}
+@keyframes lab-float {
+  from { transform: translate3d(0, -0.8%, 0); }
+  to { transform: translate3d(0, 0.8%, 0); }
+}
+
+/* ---------- size picker ---------- */
+.size-btn {
+  position: relative;
+  border-radius: var(--r-sm);
+  background: var(--bg);
+  transition: background-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+.size-btn:hover:not(:disabled) {
+  box-shadow: inset 0 0 0 1px var(--text);
+}
+.size-btn.is-on {
+  background: var(--accent);
+  color: var(--accent-text);
+  box-shadow: none;
+}
+.size-btn:disabled {
+  color: #a3a6a1;
+  text-decoration: line-through;
+  background: var(--surface);
+  box-shadow: none;
+}
+.tap-ring {
+  position: absolute;
+  inset: -5px;
+  border: 1.5px solid var(--text);
+  border-radius: calc(var(--r-sm) + 5px);
+  pointer-events: none;
+  animation: tap 0.7s ease-out forwards;
+}
+.btn .tap-ring {
+  border-radius: 999px;
+}
+@keyframes tap {
+  from { opacity: 1; transform: scale(0.85); }
+  to { opacity: 0; transform: scale(1.12); }
+}
+
+/* ---------- footer ---------- */
+.letter-input {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  outline: none;
+  color: inherit;
+}
+.letter-input::placeholder {
+  color: var(--muted);
+}
+.letter-input:focus {
+  border-color: var(--text);
+}
+
+/* ?static=1 (class set by site/components/RaceLoader.tsx) and reduced motion: everything still */
+.is-static .hero-zoom,
+.is-static .live-dot,
+.is-static .lab-float {
+  animation: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-zoom,
+  .live-dot,
+  .lab-float,
+  .notice-in {
+    animation: none;
+  }
+}
