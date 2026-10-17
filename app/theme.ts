@@ -33,4 +33,14 @@ export function applySite() {
     document.head.appendChild(desc);
   }
   desc.content = meta.description;
+
+  // Set & force update favicon link
+  let iconLink = document.querySelector<HTMLLinkElement>('link[rel~="icon"]');
+  if (!iconLink) {
+    iconLink = document.createElement("link");
+    iconLink.rel = "icon";
+    document.head.appendChild(iconLink);
+  }
+  iconLink.type = "image/svg+xml";
+  iconLink.href = "/favicon.svg?v=" + Date.now();
 }

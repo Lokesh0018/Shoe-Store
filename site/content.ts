@@ -77,6 +77,26 @@ export const about = {
   body: "From a child's first school shoes to Dad's formal pair and Grandma's comfortable slippers, find shoes, sandals, slippers and school bags for every age under one roof on Madhurawada Main Road.",
 };
 
+/** Band under the hero: big category words with a product cut-out between each, plus a slim facts row. */
+export const marquee = {
+  words: [
+    { word: "School Shoes", img: products.schoolBlack },
+    { word: "Sports", img: products.athleticNavy },
+    { word: "Casual", img: products.schoolWhite },
+    { word: "Formal", img: products.formalBrown },
+    { word: "Sandals", img: products.sandalBrown },
+    { word: "Slippers", img: products.flipflop },
+    { word: "School Bags", img: products.bagRed },
+  ],
+  facts: [
+    "Bata · Paragon · Lancer",
+    "Madhurawada Main Road",
+    "Extra 5–10% off with our card",
+    "Sizes for every age",
+    "Ask stock on WhatsApp",
+  ],
+};
+
 export const footer = {
   credit: "Concept website by SHM Technologies",
   note: "Brand names belong to their owners. Product photos are illustrative.",
