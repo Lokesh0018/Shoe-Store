@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { prefersReducedMotion } from "@/lib/gsap";
-import { about, brand, footer, nav, stockedBrands } from "@/site/content";
+import { about, brand, categories, footer, nav, stockedBrands } from "@/site/content";
 import { ArrowIcon, ChatIcon, PhoneIcon, PinIcon, StepsMark } from "./Icons";
 
 /**
@@ -69,8 +69,16 @@ export function Brands() {
   );
 }
 
-/** About + visit card. #contact is the hero's "Find Our Store" target. */
+/**
+ * About + visit card. #contact is the hero's "Find Our Store" target.
+ * Every fact here comes from data: categories + brands are counted, the offer and address are from the shop's card.
+ */
 export function Visit() {
+  const facts = [
+    { n: String(categories.length), label: "Categories under one roof" },
+    { n: String(stockedBrands.length), label: "Trusted brands in store" },
+    { n: "All ages", label: "Kids to grandparents" }, // the shop line: footwear for every generation
+  ];
   return (
     <section id="about" className="visit" aria-labelledby="about-title">
       <div className="container-x visit__grid">
@@ -87,44 +95,78 @@ export function Visit() {
           <p className="sec-lede" data-reveal>
             {about.body}
           </p>
+
           <dl className="visit__facts" data-reveal="stagger">
-            {about.facts.map((f) => (
+            {facts.map((f) => (
               <div key={f.label} className="visit__fact">
                 <dt>{f.label}</dt>
                 <dd>{f.n}</dd>
               </div>
             ))}
           </dl>
-          <p className="visit__offer" data-reveal>
-            <span className="visit__offer-tag">Card offer</span>
-            {brand.offer}
-          </p>
-        </div>
 
-        <div id="contact" className="visit__card" data-reveal>
-          <h3 className="visit__card-title">Visit the store</h3>
-          <address className="visit__address">
-            {brand.address.map((l) => (
-              <span key={l}>{l}</span>
-            ))}
-          </address>
-          <ul className="visit__rows">
-            {brand.phones.map((p) => (
-              <li key={p.tel}>
-                <a href={`tel:${p.tel}`} className="visit__row">
-                  <PhoneIcon /> <span>{p.label}</span>
-                  <ArrowIcon className="visit__row-arrow" />
-                </a>
+          <ul className="visit__cats" aria-label="What you will find" data-reveal="stagger">
+            {categories.map((c) => (
+              <li key={c.name} className="visit__cat">
+                <span className="visit__cat-img" aria-hidden>
+                  <img src={c.img.src} alt="" width={c.img.w} height={c.img.h} loading="lazy" />
+                </span>
+                {c.name}
               </li>
             ))}
           </ul>
-          <div className="visit__actions">
-            <a href={brand.mapUrl} target="_blank" rel="noopener noreferrer" className="btn-cta btn-cta--primary">
-              <PinIcon /> Get directions
-            </a>
-            <a href={brand.whatsapp} target="_blank" rel="noopener noreferrer" className="btn-cta btn-cta--ghost">
-              <ChatIcon /> WhatsApp us
-            </a>
+
+          <div className="visit__ticket" data-reveal>
+            <span className="visit__ticket-off">
+              <small>Extra</small>
+              5–10%
+              <small>off</small>
+            </span>
+            <span className="visit__ticket-text">
+              <strong>Card offer</strong>
+              {brand.offer}
+            </span>
+          </div>
+        </div>
+
+        <div id="contact" className="visit__card" data-reveal>
+          <div className="visit__map">
+            <iframe
+              src={brand.mapEmbed}
+              title={`Map: ${brand.name} ${brand.line2}, Madhurawada`}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              tabIndex={-1}
+            />
+            <span className="visit__landmark">
+              <PinIcon /> {brand.landmark}
+            </span>
+          </div>
+          <div className="visit__card-body">
+            <h3 className="visit__card-title">Visit the store</h3>
+            <address className="visit__address">
+              {brand.address.map((l) => (
+                <span key={l}>{l}</span>
+              ))}
+            </address>
+            <ul className="visit__rows">
+              {brand.phones.map((p) => (
+                <li key={p.tel}>
+                  <a href={`tel:${p.tel}`} className="visit__row">
+                    <PhoneIcon /> <span>{p.label}</span>
+                    <ArrowIcon className="visit__row-arrow" />
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <div className="visit__actions">
+              <a href={brand.mapUrl} target="_blank" rel="noopener noreferrer" className="btn-cta btn-cta--primary">
+                <PinIcon /> Get directions
+              </a>
+              <a href={brand.whatsapp} target="_blank" rel="noopener noreferrer" className="btn-cta btn-cta--ghost">
+                <ChatIcon /> WhatsApp us
+              </a>
+            </div>
           </div>
         </div>
       </div>

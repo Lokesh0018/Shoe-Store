@@ -13,6 +13,11 @@ export const brand = {
   // Confirmed by the shop owner as the WhatsApp number.
   whatsapp: "https://wa.me/918519988988",
   address: ["15-3, Opp. Z.P.H. School, Dasari Complex,", "Main Road, Madhurawada,", "Visakhapatnam – 530048"],
+  landmark: "Opposite Z.P.H. School",
+  // Same search as "Get directions", shown as an embedded map on the visit card (no API key needed).
+  mapEmbed:
+    "https://www.google.com/maps?output=embed&z=16&q=" +
+    encodeURIComponent("Sri Hanuman Shoe Mart, Dasari Complex, Main Road, Madhurawada, Visakhapatnam 530048"),
   mapUrl:
     "https://www.google.com/maps/search/?api=1&query=" +
     encodeURIComponent("Sri Hanuman Shoe Mart, Dasari Complex, Main Road, Madhurawada, Visakhapatnam 530048"),
@@ -92,13 +97,8 @@ export const categories = [
 export const about = {
   eyebrow: "About the store",
   title: ["One shop for", "the whole family."],
-  // From the shop's card, the categories above and the brand logos the team supplied.
-  facts: [
-    { n: "8", label: "Categories under one roof" },
-    { n: "11", label: "Trusted brands" },
-    { n: "5–10%", label: "Extra off with our card" },
-  ],
-  body: "From a child's first school shoes to Dad's formal pair and Grandma's comfortable slippers, find shoes, sandals, slippers and school bags for every age under one roof on Madhurawada Main Road.",
+  // Only what the shop actually carries (the 8 categories above); counts in the facts row are computed from data.
+  body: "School shoes, sports and casual pairs, formal leather, sandals, slippers and flip-flops, plus school and everyday bags. Something for every age, under one roof on Madhurawada Main Road.",
 };
 
 /** Band under the hero: big category words with a product cut-out between each, plus a slim facts row. */
