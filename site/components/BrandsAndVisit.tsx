@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { prefersReducedMotion } from "@/lib/gsap";
+import FooterTread from "./FooterTread";
 import { about, brand, categories, footer, nav, stockedBrands } from "@/site/content";
 import { ArrowIcon, ChatIcon, PhoneIcon, PinIcon, StepsMark } from "./Icons";
 
@@ -281,6 +282,9 @@ export function SiteFooter() {
           </div>
         </div>
       </div>
+
+      {/* Treadmill: a sneaker walking on the spot while the floor slides by */}
+      <FooterTread />
 
       {/* Sub-footer bottom bar */}
       <div className="site-footer__bottom">

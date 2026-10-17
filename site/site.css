@@ -1774,7 +1774,7 @@ body {
   display: grid;
   grid-template-columns: 1.4fr 0.9fr 1.1fr 1.2fr;
   gap: clamp(32px, 4vw, 56px);
-  padding-block: clamp(60px, 8vw, 96px) clamp(44px, 5vw, 64px);
+  padding-block: clamp(44px, 5vw, 68px) clamp(8px, 1vw, 14px);
 }
 .site-footer__col--brand {
   display: flex;
@@ -1936,7 +1936,7 @@ body {
 
 .site-footer__bottom {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding-block: 22px;
+  padding-block: 16px;
   background: rgba(10, 15, 26, 0.4);
 }
 .site-footer__bottom-inner {
@@ -1968,8 +1968,8 @@ body {
 @media (max-width: 640px) {
   .site-footer__main {
     grid-template-columns: 1fr;
-    gap: 36px;
-    padding-block: 48px 36px;
+    gap: 32px;
+    padding-block: 40px 8px;
   }
   .site-footer__cta-group {
     flex-direction: column;
@@ -3047,6 +3047,195 @@ body {
 /* dropdown: the lab currently on screen */
 .nav-dropdown__item[aria-current="true"] .nav-dropdown__item-title {
   color: var(--orange-ink);
+}
+
+/* ---------- Footer walk: a pair of sneakers walking left to right (FooterTread) ---------- */
+.ftw {
+  --floor: 14px; /* where the soles land, from the bottom of the strip */
+  --shoe-w: 118px;
+  position: relative;
+  height: 96px; /* fits the shoe + its highest lift; reserved, so no layout shift */
+  overflow: hidden;
+  pointer-events: none;
+  /* feet fade in and out at the screen edges instead of popping */
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 9%, #000 91%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 9%, #000 91%, transparent 100%);
+}
+
+/* soft warm spotlight that travels under the pair */
+.ftw__glow {
+  position: absolute;
+  left: 0;
+  bottom: calc(var(--floor) - 46px);
+  width: 520px;
+  height: 150px;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(244, 119, 53, 0.16), rgba(244, 119, 53, 0.05) 55%, rgba(244, 119, 53, 0));
+  will-change: transform;
+}
+/* tread print left on the floor at each landing, fades as the pair walks on */
+.ftw__print {
+  position: absolute;
+  left: 0;
+  bottom: calc(var(--floor) - 3px);
+  width: calc(var(--shoe-w) * 0.82);
+  height: 5px;
+  border-radius: 40% 60% 60% 40% / 50%;
+  background: repeating-linear-gradient(90deg, rgba(226, 232, 240, 0.7) 0 3px, transparent 3px 7px);
+  opacity: 0;
+  will-change: transform, opacity;
+}
+/* little puff kicked off the heel on landing */
+.ftw__dust {
+  position: absolute;
+  left: 0;
+  bottom: var(--floor);
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(226, 232, 240, 0.75);
+  box-shadow:
+    -8px -4px 0 -1px rgba(226, 232, 240, 0.55),
+    -3px -10px 0 -2px rgba(226, 232, 240, 0.45),
+    -12px 2px 0 -2px rgba(226, 232, 240, 0.4);
+  opacity: 0;
+  will-change: transform, opacity;
+}
+/* a faint floor line the shoes walk on */
+.ftw__floor {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: var(--floor);
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.12) 20%, rgba(255, 255, 255, 0.12) 80%, rgba(255, 255, 255, 0) 100%);
+}
+.ftw__foot {
+  position: absolute;
+  left: 0;
+  bottom: var(--floor);
+  width: var(--shoe-w);
+  transform-origin: 50% 100%;
+  will-change: transform;
+}
+/* back foot: slightly higher (further away) and darker, for depth */
+.ftw__foot--back {
+  bottom: calc(var(--floor) + 4px);
+  filter: brightness(0.72) saturate(0.85);
+}
+.ftw__foot--front .ftw__svg {
+  filter: drop-shadow(0 0 6px rgba(244, 119, 53, 0.28));
+}
+.ftw__svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-bottom: calc(var(--shoe-w) * -0.042); /* empty space under the sole in the viewBox */
+  overflow: visible;
+}
+.ftw__shadow {
+  position: absolute;
+  left: 0;
+  bottom: calc(var(--floor) - 5px);
+  width: var(--shoe-w);
+  height: 10px;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0));
+  will-change: transform, opacity;
+}
+.ftw__shadow--back {
+  bottom: calc(var(--floor) + 1px);
+  opacity: 0.6;
+}
+/* sneaker colours */
+.ftw__stop-hi {
+  stop-color: #ffa266;
+}
+.ftw__stop-mid {
+  stop-color: var(--orange);
+}
+.ftw__stop-lo {
+  stop-color: var(--orange-deep);
+}
+.ftw__outsole {
+  fill: #64748b;
+}
+.ftw__tread {
+  fill: none;
+  stroke: #334155;
+  stroke-width: 1.6;
+  stroke-dasharray: 3 3;
+}
+.ftw__mid {
+  fill: none;
+  stroke: #cbd5e1;
+  stroke-width: 1.2;
+}
+.ftw__cap {
+  fill: rgba(140, 44, 8, 0.3);
+}
+.ftw__perf,
+.ftw__eyelet,
+.ftw__stripe,
+.ftw__lace,
+.ftw__collar,
+.ftw__gloss {
+  fill: none;
+  stroke-linecap: round;
+}
+.ftw__perf {
+  stroke: rgba(255, 255, 255, 0.55);
+  stroke-width: 1.6;
+}
+.ftw__eyelet {
+  stroke: #0f1624;
+  stroke-width: 2.8;
+}
+.ftw__heel {
+  fill: rgba(255, 255, 255, 0.94);
+}
+.ftw__tab {
+  fill: #0f1624;
+}
+.ftw__stripe {
+  stroke: #fff;
+  stroke-width: 3;
+}
+.ftw__lace {
+  stroke: #fff;
+  stroke-width: 2.2;
+}
+.ftw__collar {
+  stroke: #0f1624;
+  stroke-width: 2.4;
+}
+.ftw__gloss {
+  stroke: rgba(255, 255, 255, 0.45);
+  stroke-width: 1.6;
+}
+/* ?static=1 / reduced motion: the pair stands side by side in the middle */
+.ftw--still .ftw__glow {
+  left: 50%;
+  transform: translateX(-50%);
+}
+.ftw--still .ftw__foot--front,
+.ftw--still .ftw__shadow--front {
+  left: calc(50% - var(--shoe-w) * 0.3);
+}
+.ftw--still .ftw__foot--back,
+.ftw--still .ftw__shadow--back {
+  left: calc(50% - var(--shoe-w) * 0.95);
+}
+@media (max-width: 767px) {
+  .ftw {
+    --floor: 10px;
+    --shoe-w: 92px;
+    height: 76px;
+  }
+  .ftw__glow {
+    width: 340px;
+    height: 110px;
+  }
 }
 
 /* ---------- Small global refinements ---------- */
