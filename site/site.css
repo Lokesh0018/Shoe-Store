@@ -3238,6 +3238,56 @@ body {
   }
 }
 
+/* ---------- Scroll footprint trail, Collections → footer (ScrollFootprints) ---------- */
+.spt {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  overflow: hidden;
+  pointer-events: none;
+  mix-blend-mode: multiply; /* sits over every section's background like a faint print */
+}
+.spt__defs {
+  position: absolute;
+}
+.spt__print {
+  position: absolute;
+  width: 22px;
+  color: rgba(25, 35, 56, 0.13);
+  opacity: 0;
+  will-change: opacity;
+}
+.spt__print svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  fill: currentColor;
+  transform: scale(var(--s, 1));
+}
+/* right and left feet are mirror images */
+.spt__print--l svg {
+  scale: -1 1;
+}
+/* every 4th print carries a hint of the brand orange */
+.spt__print:nth-of-type(4n) {
+  color: rgba(244, 119, 53, 0.2);
+}
+/* ?static=1 / reduced motion: the whole trail, still and faint */
+.spt--still .spt__print {
+  opacity: 0.55;
+}
+@media (prefers-reduced-motion: reduce) {
+  .spt__print {
+    opacity: 0.55;
+  }
+}
+@media (max-width: 767px) {
+  .spt__print {
+    width: 15px;
+  }
+}
+
 /* ---------- Small global refinements ---------- */
 ::selection {
   background: rgba(244, 119, 53, 0.22);

@@ -5,6 +5,7 @@ import ColourLab from "./components/ColourLab";
 import ContactForm from "./components/ContactForm";
 import { bagLab, slipperLab } from "./content";
 import Collections from "./components/Collections";
+import ScrollFootprints from "./components/ScrollFootprints";
 import { Brands, SiteFooter, Visit } from "./components/BrandsAndVisit";
 
 const ICON = `data:image/svg+xml,${encodeURIComponent(
@@ -37,6 +38,8 @@ export default function Page() {
         <Brands />
         <Visit />
         <ContactForm />
+        {/* footprint trail from Collections down to the footer, laid as you scroll */}
+        <ScrollFootprints />
       </main>
       <SiteFooter />
     </>
