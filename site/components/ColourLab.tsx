@@ -14,7 +14,16 @@ const pad = (n: number) => String(n).padStart(2, "0");
  * it changes and the rounded stage takes a soft tint of the colour.
  * Scroll-driven, so a ?record=1 laptop and phone show the same colour at the same second.
  */
-type Lab = typeof shoeLab;
+type Colourway = { id: string; name: string; color: string; image: string; note: string; model?: string; price?: string };
+type Lab = {
+  eyebrow: string;
+  heading: string[];
+  model: string;
+  price: string;
+  specs: { label: string; value: string }[];
+  cta: { label: string; href: string };
+  colourways: Colourway[];
+};
 
 /** `data` picks the product (shoes by default); `flip` mirrors the layout so a second lab doesn't look copied. */
 export default function ColourLab({ data = shoeLab, id = "lab", flip = false }: { data?: Lab; id?: string; flip?: boolean }) {
@@ -24,6 +33,7 @@ export default function ColourLab({ data = shoeLab, id = "lab", flip = false }: 
   const [still, setStill] = useState(false);
   const root = useRef<HTMLElement>(null);
   const cw = cws[i];
+  const model = cw.model ?? lab.model; // an item may be a different product (e.g. the tote among backpacks)
 
   useEffect(() => {
     if (prefersReducedMotion()) {
@@ -118,7 +128,7 @@ export default function ColourLab({ data = shoeLab, id = "lab", flip = false }: 
                     <img
                       key={c.id}
                       src={c.image}
-                      alt={k === i ? `${lab.model} in ${c.name}` : ""}
+                      alt={k === i ? `${c.model ?? lab.model} in ${c.name}` : ""}
                       aria-hidden={k !== i}
                       draggable={false}
                       className={`lab-shoe ${k === i ? "" : "cw-out"}`}
@@ -133,13 +143,13 @@ export default function ColourLab({ data = shoeLab, id = "lab", flip = false }: 
 
               {/* right: product card */}
               <div className="lab__card">
-                <p className="lab__model">{lab.model}</p>
+                <p key={`m-${model}`} className="lab__model cw-in">{model}</p>
                 <p key={i} className="lab__cw cw-in">
                   {cw.name}
                 </p>
                 <p className="lab__note">{cw.note}</p>
                 <p className="lab__price tnum">
-                  {lab.price}
+                  {cw.price ?? lab.price}
                   <span>sample price</span>
                 </p>
                 <dl className="lab__specs">

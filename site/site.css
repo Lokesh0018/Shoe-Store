@@ -1103,6 +1103,10 @@ body {
   text-transform: uppercase;
   color: var(--orange-ink);
 }
+.lab__model.cw-in,
+.lab__cw.cw-in {
+  display: block; /* the fade-in class is inline by default; keep label and name on their own lines */
+}
 .lab__cw {
   margin-top: 8px;
   font-family: var(--font-display-family);
@@ -1951,6 +1955,43 @@ body {
   width: 16px;
   height: 16px;
 }
+/* every product sits in the same padded box, fitted inside it and resting on one floor line above the shadow */
+.cat-card__stage {
+  display: block;
+}
+.cat-card__img {
+  position: absolute;
+  inset: 8% 11% 17%;
+  width: 78%;
+  height: 75%;
+  max-height: none;
+  object-fit: contain;
+  object-position: 50% 100%;
+  filter: drop-shadow(0 10px 10px rgba(30, 41, 59, 0.14));
+}
+.cat-card__disc {
+  left: 20%;
+  right: 20%;
+  bottom: 11%;
+  height: 10%;
+}
+@media (hover: hover) {
+  .cat-card:hover .cat-card__img {
+    transform: translateY(-4%) scale(1.03);
+  }
+}
+.cat-card {
+  display: flex;
+  flex-direction: column;
+}
+.cat-card__text {
+  flex: 1;
+  align-items: flex-start;
+}
+.cat-card__go {
+  margin-top: 2px;
+}
+
 @media (max-width: 1023px) {
   .sec-head--split {
     grid-template-columns: 1fr;

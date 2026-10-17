@@ -120,7 +120,7 @@ export function SiteFooter() {
             ))}
             <li>
               <a href="#lab" className="site-footer__link">
-                Colour Lab 3D
+                Shoe Lab 3D
               </a>
             </li>
           </ul>

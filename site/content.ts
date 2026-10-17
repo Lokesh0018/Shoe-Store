@@ -103,10 +103,10 @@ export const marquee = {
   ],
 };
 
-/** Colour Lab (the shoe animation from the Volt site): one runner, five colourways, changed by scroll. Sample price. */
+/** Shoe Lab (the shoe animation from the Volt site): one runner, five colourways, changed by scroll. Sample price. */
 const VOLT = "/images/volt/web";
 export const lab = {
-  eyebrow: "Colour Lab",
+  eyebrow: "Shoe Lab",
   heading: ["One runner.", "Five colours."],
   model: "Daily Runner",
   price: "₹1,299",
@@ -147,6 +147,27 @@ export const slipperLab = {
     { id: "mint", name: "Mint", color: "#3fd6a0", image: `${SLIP}/flip-mint.webp`, note: "Fresh green" },
     { id: "sunny", name: "Sunny", color: "#f5d020", image: `${SLIP}/flip-sunny.webp`, note: "Bright yellow" },
     { id: "berry", name: "Berry", color: "#c8338c", image: `${SLIP}/flip-berry.webp`, note: "Deep pink" },
+  ],
+};
+
+/** Third lab: the shop's real bag photos. Three backpacks in one style, then the tote (own name + price). Sample prices. */
+export const bagLab = {
+  eyebrow: "Bag Lab",
+  heading: ["A bag for", "every day."],
+  model: "Classic School Backpack",
+  price: "₹799",
+  specs: [
+    { label: "Styles", value: "Backpacks & totes" },
+    { label: "For", value: "School, college & work" },
+    { label: "Pockets", value: "Front & side" },
+    { label: "Stock", value: "Ask on WhatsApp" },
+  ],
+  cta: { label: "Ask what's in stock", href: "https://wa.me/918519988988" },
+  colourways: [
+    { id: "red", name: "Red", color: "#e2231a", image: products.bagRed.src, note: "Bright school red" },
+    { id: "navy", name: "Navy", color: "#1f2a5c", image: products.bagNavy.src, note: "Deep navy blue" },
+    { id: "pink", name: "Pink", color: "#f4b6c2", image: products.bagPink.src, note: "Soft blush pink" },
+    { id: "tan", name: "Tan", color: "#b5651d", image: products.bagTote.src, note: "Leather-look tote", model: "Everyday Tote", price: "₹1,199" },
   ],
 };
 

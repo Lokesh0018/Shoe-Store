@@ -2,7 +2,7 @@ import HeroNav from "./components/hero/HeroNav";
 import HeroSection from "./components/hero/HeroSection";
 import AisleMarquee from "./components/AisleMarquee";
 import ColourLab from "./components/ColourLab";
-import { slipperLab } from "./content";
+import { bagLab, slipperLab } from "./content";
 import Collections from "./components/Collections";
 import { Brands, SiteFooter, Visit } from "./components/BrandsAndVisit";
 
@@ -31,6 +31,7 @@ export default function Page() {
         <AisleMarquee />
         <ColourLab />
         <ColourLab data={slipperLab} id="slippers" flip />
+        <ColourLab data={bagLab} id="bags" />
         <Collections />
         <Brands />
         <Visit />
