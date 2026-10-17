@@ -21,6 +21,24 @@ export const brand = {
   brands: ["Bata", "Paragon", "Lancer"],
 };
 
+/** Brands in the "Trusted brands" logo marquee (logos supplied by the shop/team).
+ *  `r` = logo width / height after trimming; the marquee uses it to give every logo the same visual weight.
+ *  `s` = optional size nudge for logos with empty space inside them (e.g. an oval badge). */
+const BR = `${IMG}/brands`;
+export const stockedBrands: { name: string; logo: string; r: number; s?: number }[] = [
+  { name: "Bata", logo: `${BR}/bata.webp`, r: 4.0 },
+  { name: "Paragon", logo: `${BR}/paragon.webp`, r: 2.4 },
+  { name: "Lancer", logo: `${BR}/lancer.webp`, r: 6.78 },
+  { name: "Walkaroo", logo: `${BR}/walkaroo.webp`, r: 1.0 },
+  { name: "Woodland", logo: `${BR}/woodland.webp`, r: 2.45 },
+  { name: "Nike", logo: `${BR}/nike.webp`, r: 1.89 },
+  { name: "Adidas", logo: `${BR}/adidas.webp`, r: 1.48 },
+  { name: "Puma", logo: `${BR}/puma.webp`, r: 1.06 },
+  { name: "Wildcraft", logo: `${BR}/wildcraft.webp`, r: 1.84 },
+  { name: "Skybags", logo: `${BR}/skybags.webp`, r: 2.02 },
+  { name: "American Tourister", logo: `${BR}/american-tourister.webp`, r: 1.6, s: 1.3 },
+];
+
 export const nav = [
   { label: "Home", href: "#top" },
   { label: "Collections", href: "#collections" },
@@ -74,10 +92,10 @@ export const categories = [
 export const about = {
   eyebrow: "About the store",
   title: ["One shop for", "the whole family."],
-  // All three come from the shop's card / the categories above, nothing invented.
+  // From the shop's card, the categories above and the brand logos the team supplied.
   facts: [
     { n: "8", label: "Categories under one roof" },
-    { n: "3+", label: "Trusted brands" },
+    { n: "11", label: "Trusted brands" },
     { n: "5–10%", label: "Extra off with our card" },
   ],
   body: "From a child's first school shoes to Dad's formal pair and Grandma's comfortable slippers, find shoes, sandals, slippers and school bags for every age under one roof on Madhurawada Main Road.",

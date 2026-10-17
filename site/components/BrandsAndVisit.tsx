@@ -1,20 +1,69 @@
-import { about, brand, footer, nav } from "@/site/content";
+import { useEffect, useState } from "react";
+import { prefersReducedMotion } from "@/lib/gsap";
+import { about, brand, footer, nav, stockedBrands } from "@/site/content";
 import { ArrowIcon, ChatIcon, PhoneIcon, PinIcon, StepsMark } from "./Icons";
 
-/** Brands the shop stocks (from its card), set as type — no logos. */
+/**
+ * Brand showcase: centred heading, then two rows of identical white logo chips gliding in opposite
+ * directions (the second row in a shuffled order). Each logo gets the same visual area (wide logos shorter,
+ * square ones taller). Rows pause under the mouse; still with ?static=1 / reduced motion.
+ */
 export function Brands() {
+  const [still, setStill] = useState(false);
+  useEffect(() => setStill(prefersReducedMotion()), []);
+  // both rows carry every brand; the second walks the list 5 at a time (a shuffle, not a shift), so when the
+  // rows cross each other at most one logo ever sits above the same logo
+  const n = stockedBrands.length;
+  const rows = [stockedBrands, stockedBrands.map((_, j) => stockedBrands[(j * 5) % n])];
+
   return (
-    <section id="brands" className="brands" aria-labelledby="brands-title">
-      <div className="container-x brands__inner">
-        <h2 id="brands-title" className="brands__label">
-          Trusted brands on our shelves
+    <section id="brands" className={`bmq ${still ? "bmq--still" : ""}`} aria-labelledby="brands-title">
+      <header className="container-x bmq__head">
+        <p className="eyebrow">
+          <span className="eyebrow__dash" aria-hidden />
+          Trusted brands
+        </p>
+        <h2 id="brands-title" className="bmq__title" data-reveal>
+          Names you know,
+          <br />
+          on our shelves.
         </h2>
-        <ul className="brands__list" data-reveal="stagger">
-          {brand.brands.map((b) => (
-            <li key={b}>{b}</li>
-          ))}
-          <li className="brands__more">& more</li>
-        </ul>
+        <p className="bmq__count" data-reveal>
+          <span className="bmq__count-n">{stockedBrands.length}</span> brands for shoes, sandals &amp; bags
+        </p>
+      </header>
+      <ul className="sr-only">
+        {stockedBrands.map((b) => (
+          <li key={b.name}>{b.name}</li>
+        ))}
+      </ul>
+      <div className="bmq__rows" aria-hidden>
+        {rows.map((row, r) => {
+          // two copies per half so each half is always wider than a 2560px screen
+          const run = [...row, ...row];
+          return (
+            <div key={r} className={`bmq__viewport ${r ? "bmq__viewport--rev" : ""}`}>
+              <div className="bmq__track">
+                {[0, 1].map((half) => (
+                  <div key={half} className="bmq__half">
+                    {run.map((b, i) => (
+                      <span key={i} className="bmq__chip">
+                        <img
+                          src={b.logo}
+                          alt=""
+                          draggable={false}
+                          loading="lazy"
+                          className="bmq__logo"
+                          style={{ width: `calc(var(--logo-area) * ${(Math.sqrt(b.r) * (b.s ?? 1)).toFixed(3)})`, aspectRatio: String(b.r) }}
+                        />
+                      </span>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </div>
+          );
+        })}
       </div>
     </section>
   );
