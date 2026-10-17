@@ -1,2 +1,3 @@
-// Fonts for THIS site: one Swiss family. Inter for everything (semi-bold, tight headings; tabular numbers for prices, sizes, countdown).
-import "@fontsource-variable/inter";
+// Fonts for THIS site: Bricolage Grotesque (bold editorial headlines) + DM Sans (calm, readable body).
+import "@fontsource-variable/bricolage-grotesque";
+import "@fontsource-variable/dm-sans";
