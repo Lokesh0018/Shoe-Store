@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { prefersReducedMotion, ScrollTrigger } from "@/lib/gsap";
 import { onSiteReady } from "@/lib/loading";
-import { lab } from "@/site/content";
+import { lab as shoeLab } from "@/site/content";
 import { ChatIcon } from "./Icons";
 
 /** The stage background: a soft wash of the colourway over cool white. */
@@ -14,7 +14,11 @@ const pad = (n: number) => String(n).padStart(2, "0");
  * it changes and the rounded stage takes a soft tint of the colour.
  * Scroll-driven, so a ?record=1 laptop and phone show the same colour at the same second.
  */
-export default function ColourLab() {
+type Lab = typeof shoeLab;
+
+/** `data` picks the product (shoes by default); `flip` mirrors the layout so a second lab doesn't look copied. */
+export default function ColourLab({ data = shoeLab, id = "lab", flip = false }: { data?: Lab; id?: string; flip?: boolean }) {
+  const lab = data;
   const cws = lab.colourways;
   const [i, setI] = useState(0);
   const [still, setStill] = useState(false);
@@ -52,10 +56,10 @@ export default function ColourLab() {
   };
 
   return (
-    <section ref={root} id="lab" aria-label={`${lab.eyebrow}: ${lab.model}`} className={`lab ${still ? "lab--still" : ""}`}>
+    <section ref={root} id={id} aria-label={`${lab.eyebrow}: ${lab.model}`} className={`lab ${flip ? "lab--flip" : ""} ${still ? "lab--still" : ""}`}>
       {/* ?record=1: arrive at the start of the pin, then scroll through all five colourways */}
-      <div aria-hidden data-record-label="Colour Lab: start" data-record-time="1" className="pointer-events-none absolute inset-x-0 top-0 h-px" />
-      <div aria-hidden data-record-label="Colour Lab: all 5 colours" data-record-time="7" data-record-align="bottom" className="pointer-events-none absolute inset-x-0 bottom-0 h-px" />
+      <div aria-hidden data-record-label={`${lab.eyebrow}: start`} data-record-time="1" className="pointer-events-none absolute inset-x-0 top-0 h-px" />
+      <div aria-hidden data-record-label={`${lab.eyebrow}: all colours`} data-record-time="7" data-record-align="bottom" className="pointer-events-none absolute inset-x-0 bottom-0 h-px" />
 
       <div className="lab__pin">
         <div className="lab__wrap">

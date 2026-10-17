@@ -126,6 +126,30 @@ export const lab = {
   ],
 };
 
+/** Second Colour Lab, mirrored: the flip-flop in five colours. Colourways are recolours of the shop photo
+ *  (straps only, sole untouched) made for the concept; swap in real photos when the shop has them. Sample price. */
+const SLIP = "/images/sri-hanuman/slippers";
+export const slipperLab = {
+  eyebrow: "Slipper Lab",
+  heading: ["One flip-flop.", "Five moods."],
+  model: "Everyday Flip-flop",
+  price: "₹249",
+  specs: [
+    { label: "Sizes", value: "UK 3 – 11" },
+    { label: "Sole", value: "Soft textured EVA" },
+    { label: "Strap", value: "Cushioned rubber" },
+    { label: "For", value: "Home & beach" },
+  ],
+  cta: { label: "Ask for your size", href: "https://wa.me/918519988988" },
+  colourways: [
+    { id: "coral", name: "Coral", color: "#f2795b", image: `${SLIP}/flip-coral.webp`, note: "Warm coral" },
+    { id: "ocean", name: "Ocean", color: "#3d8fe0", image: `${SLIP}/flip-ocean.webp`, note: "Sea blue" },
+    { id: "mint", name: "Mint", color: "#3fd6a0", image: `${SLIP}/flip-mint.webp`, note: "Fresh green" },
+    { id: "sunny", name: "Sunny", color: "#f5d020", image: `${SLIP}/flip-sunny.webp`, note: "Bright yellow" },
+    { id: "berry", name: "Berry", color: "#c8338c", image: `${SLIP}/flip-berry.webp`, note: "Deep pink" },
+  ],
+};
+
 export const footer = {
   credit: "Concept website by SHM Technologies",
   note: "Brand names belong to their owners. Product photos are illustrative.",
