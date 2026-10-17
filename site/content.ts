@@ -74,6 +74,12 @@ export const categories = [
 export const about = {
   eyebrow: "About the store",
   title: ["One shop for", "the whole family."],
+  // All three come from the shop's card / the categories above, nothing invented.
+  facts: [
+    { n: "8", label: "Categories under one roof" },
+    { n: "3+", label: "Trusted brands" },
+    { n: "5–10%", label: "Extra off with our card" },
+  ],
   body: "From a child's first school shoes to Dad's formal pair and Grandma's comfortable slippers, find shoes, sandals, slippers and school bags for every age under one roof on Madhurawada Main Road.",
 };
 
@@ -94,6 +100,29 @@ export const marquee = {
     "Extra 5–10% off with our card",
     "Sizes for every age",
     "Ask stock on WhatsApp",
+  ],
+};
+
+/** Colour Lab (the shoe animation from the Volt site): one runner, five colourways, changed by scroll. Sample price. */
+const VOLT = "/images/volt/web";
+export const lab = {
+  eyebrow: "Colour Lab",
+  heading: ["One runner.", "Five colours."],
+  model: "Daily Runner",
+  price: "₹1,299",
+  specs: [
+    { label: "Sizes", value: "UK 3 – 11" },
+    { label: "Upper", value: "Breathable knit" },
+    { label: "Sole", value: "Cushioned EVA" },
+    { label: "For", value: "Kids to adults" },
+  ],
+  cta: { label: "Ask for your size", href: "https://wa.me/918519988988" },
+  colourways: [
+    { id: "ember", name: "Ember", color: "#ff5a1f", image: `${VOLT}/cw-ember.webp`, note: "Bright orange" },
+    { id: "ice", name: "Ice", color: "#6ec4ff", image: `${VOLT}/cw-ice.webp`, note: "Cool blue" },
+    { id: "pulse", name: "Pulse", color: "#ff2fa6", image: `${VOLT}/cw-pulse.webp`, note: "Magenta pink" },
+    { id: "ghost", name: "Ghost", color: "#e6ebe4", image: `${VOLT}/cw-ghost.webp`, note: "Fog white" },
+    { id: "lime", name: "Lime", color: "#c8ff1a", image: `${VOLT}/cw-lime.webp`, note: "Electric lime" },
   ],
 };
 

@@ -1,6 +1,7 @@
 import HeroNav from "./components/hero/HeroNav";
 import HeroSection from "./components/hero/HeroSection";
 import AisleMarquee from "./components/AisleMarquee";
+import ColourLab from "./components/ColourLab";
 import Collections from "./components/Collections";
 import { Brands, SiteFooter, Visit } from "./components/BrandsAndVisit";
 
@@ -27,6 +28,7 @@ export default function Page() {
       <main id="main" tabIndex={-1} className="relative z-[1] overflow-x-clip outline-none">
         <HeroSection />
         <AisleMarquee />
+        <ColourLab />
         <Collections />
         <Brands />
         <Visit />
