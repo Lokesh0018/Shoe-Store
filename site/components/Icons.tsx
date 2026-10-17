@@ -53,6 +53,12 @@ export const CloseIcon = (p: SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
+export const ChevronDownIcon = (p: SVGProps<SVGSVGElement>) => (
+  <svg {...base(p)}>
+    <path d="M6 9l6 6 6-6" />
+  </svg>
+);
+
 /** Brand mark: Modern sleek sneaker silhouette + dynamic motion sweep for Sri Hanuman Shoe Mart. */
 export const StepsMark = ({ width = 40, height = 40, className = "", ...p }: SVGProps<SVGSVGElement>) => (
   <svg

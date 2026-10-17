@@ -44,12 +44,18 @@ export const stockedBrands: { name: string; logo: string; r: number; s?: number 
   { name: "American Tourister", logo: `${BR}/american-tourister.webp`, r: 1.6, s: 1.3 },
 ];
 
+export const collectionSubmenu = [
+  { label: "Shoes", href: "#lab", desc: "School, Sports, Casual & Formal" },
+  { label: "Slippers", href: "#slippers", desc: "Daily Comfort & Flip-Flops" },
+  { label: "Bags", href: "#bags", desc: "School Backpacks & Totes" },
+];
+
 export const nav = [
   { label: "Home", href: "#top" },
-  { label: "Collections", href: "#collections" },
+  { label: "Collections", href: "#collections", submenu: collectionSubmenu },
   { label: "Brands", href: "#brands" },
   { label: "About", href: "#about" },
-  { label: "Contact", href: "#contact" },
+  { label: "Contact", href: "#enquire" },
 ];
 
 export const hero = {
